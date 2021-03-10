@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 
 function Todo(props) {
-  var [item, fnItem] = useState("none");
+  var [item, fnItem] = useState(false);
 
   function clicked() {
-    fnItem("line-through");
+    fnItem((prevItem) => {
+      return !prevItem;
+    });
   }
 
   return (
-    <li style={{ textDecoration: item }} onClick={clicked}>
+    <li
+      style={{ textDecoration: item ? "line-through" : "none" }}
+      onClick={clicked}
+    >
       {props.name}
     </li>
   );
